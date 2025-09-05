@@ -3,656 +3,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan - Tastive</title>
-    <style>
-        /* Semua style dari index.html sudah dimasukkan di sini */
-        /* Reset & Base Styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        :root {
-            --primary-blue: #1a4b8c;
-            --secondary-blue: #2d6ec4;
-            --light-blue: #e8f0fe;
-            --dark-blue: #0f2e5a;
-            --accent: #ff6b6b;
-            --white: #ffffff;
-            --gray: #f8f9fa;
-            --text-dark: #333333;
-            --text-light: #666666;
-        }
-        
-        body {
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        /* Header & Navigation */
-        header {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary-blue);
-        }
-        
-        .nav-links {
-            display: flex;
-            list-style: none;
-        }
-        
-        .nav-links li {
-            margin-left: 30px;
-        }
-        
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-blue);
-        }
-        
-        .hamburger {
-            display: none;
-            cursor: pointer;
-        }
-        
-        /* Page Header */
-        .page-header {
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--secondary-blue) 100%);
-            color: var(--white);
-            padding: 160px 0 80px;
-            text-align: center;
-        }
-        
-        .page-header h1 {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
-        }
-        
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-        }
-        
-        .breadcrumb li {
-            margin: 0 10px;
-        }
-        
-        .breadcrumb a {
-            color: var(--light-blue);
-            text-decoration: none;
-        }
-        
-        .breadcrumb li:after {
-            content: "/";
-            margin-left: 10px;
-            color: var(--light-blue);
-        }
-        
-        .breadcrumb li:last-child:after {
-            content: "";
-        }
-        
-        /* Services Section */
-        .services {
-            padding: 80px 0;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-        }
-        
-        .section-title p {
-            color: var(--text-light);
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .service-card {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .service-card:before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background-color: var(--primary-blue);
-            transition: width 0.3s;
-        }
-        
-        .service-card:hover:before {
-            width: 100%;
-            opacity: 0.05;
-        }
-        
-        .service-icon {
-            font-size: 40px;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-card h3 {
-            margin-bottom: 15px;
-            color: var(--dark-blue);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-card p {
-            margin-bottom: 20px;
-            color: var(--text-light);
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-features {
-            list-style: none;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .service-features li {
-            margin-bottom: 10px;
-            color: var(--text-light);
-            display: flex;
-            align-items: center;
-        }
-        
-        .service-features li:before {
-            content: "✓";
-            color: var(--primary-blue);
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .service-link {
-            display: inline-block;
-            color: var(--primary-blue);
-            text-decoration: none;
-            font-weight: 600;
-            position: relative;
-            z-index: 1;
-            transition: color 0.3s;
-        }
-        
-        .service-link:hover {
-            color: var(--accent);
-        }
-        
-        /* Process Section */
-        .process {
-            padding: 80px 0;
-            background-color: var(--gray);
-        }
-        
-        .process-steps {
-            display: flex;
-            justify-content: space-between;
-            position: relative;
-            margin-top: 50px;
-        }
-        
-        .process-steps:before {
-            content: "";
-            position: absolute;
-            top: 40px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: var(--primary-blue);
-            z-index: 1;
-        }
-        
-        .process-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-            flex: 1;
-        }
-        
-        .step-number {
-            width: 80px;
-            height: 80px;
-            background-color: var(--primary-blue);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin: 0 auto 20px;
-        }
-        
-        .process-step h3 {
-            margin-bottom: 15px;
-            color: var(--dark-blue);
-        }
-        
-        .process-step p {
-            color: var(--text-light);
-            padding: 0 15px;
-        }
-        
-        /* CTA Section */
-        .cta {
-            background: linear-gradient(135deg, var(--secondary-blue) 0%, var(--primary-blue) 100%);
-            color: var(--white);
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            max-width: 700px;
-            margin: 0 auto 40px;
-            font-size: 1.1rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--white);
-            padding: 12px 30px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-light {
-            background-color: var(--white);
-            color: var(--primary-blue);
-        }
-        
-        .btn-light:hover {
-            background-color: var(--light-blue);
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark-blue);
-            color: var(--white);
-            padding: 60px 0 30px;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-column h3 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: var(--white);
-        }
-        
-        .footer-column p, .footer-column li {
-            color: var(--light-blue);
-            margin-bottom: 10px;
-        }
-        
-        .footer-column ul {
-            list-style: none;
-        }
-        
-        .footer-column a {
-            color: var(--light-blue);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-column a:hover {
-            color: var(--accent);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            display: inline-block;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            text-align: center;
-            line-height: 40px;
-            transition: background-color 0.3s;
-        }
-        
-        .social-links a:hover {
-            background-color: var(--accent);
-        }
-        
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--light-blue);
-            font-size: 0.9rem;
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: block;
-            }
-            
-            .nav-links {
-                position: fixed;
-                top: 80px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 80px);
-                background-color: var(--white);
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: left 0.3s;
-            }
-            
-            .nav-links.active {
-                left: 0;
-            }
-            
-            .nav-links li {
-                margin: 15px 0;
-            }
-            
-            .process-steps {
-                flex-direction: column;
-            }
-            
-            .process-steps:before {
-                display: none;
-            }
-            
-            .process-step {
-                margin-bottom: 40px;
-            }
-        }
-    </style>
+    <title>Our Services - BlueWave Digital</title>
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="services.css">
+    <link rel="stylesheet" href="footer.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Header & Navigation -->
     <header>
-        <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="index.html">
+                    <h2>BlueWave<span>Digital</span></h2>
+                </a>
+            </div>
             <nav>
-                <div class="logo">Tastive</div>
                 <ul class="nav-links">
-                    <li><a href="index.html">Beranda</a></li>
-                    <li><a href="about.html">Tentang Kami</a></li>
-                    <li><a href="services.html" class="active">Layanan</a></li>
-                    <li><a href="portfolio.html">Portofolio</a></li>
-                    <li><a href="contact.html">Kontak</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html" class="active">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
-                <div class="hamburger">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
             </nav>
+            <div class="cta-nav">
+                <a href="contact.html" class="btn-nav">Get Quote</a>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </header>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>Layanan Kami</h1>
-            <ul class="breadcrumb">
-                <li><a href="index.html">Beranda</a></li>
-                <li>Layanan</li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2>Layanan Profesional Kami</h2>
-                <p>Kami menawarkan berbagai layanan digital marketing yang dapat disesuaikan dengan kebutuhan bisnis Anda</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Strategi & Manajemen Digital</h3>
-                    <p>Kelola dan optimalkan kehadiran media sosial Anda dengan konten yang menarik dan strategi yang efektif.</p>
-                    <ul class="service-features">
-                        <li>Strategi konten yang terencana</li>
-                        <li>Manajemen komunitas</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">🔍</div>
-                    <h3>SEO Optimization</h3>
-                    <p>Tingkatkan visibilitas website Anda di mesin pencari dengan teknik SEO terbaru dan terbukti efektif.</p>
-                    <ul class="service-features">
-                        <li>Audit website</li>
-                        <li>Research keyword</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">💻</div>
-                    <h3>Pembuatan Konten KreatiF</h3>
-                    <p>Buat website yang menarik, responsif, dan user-friendly untuk meningkatkan pengalaman pengunjung.</p>
-                    <ul class="service-features">
-                        <li>Web design modern</li>
-                        <li>Development responsif</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📊</div>
-                    <h3>Desain Grafis dan Identitas Visual</h3>
-                    <p>Maximalkan ROI dengan kampanye Google Ads yang dikelola oleh ahli pemasaran digital kami.</p>
-                    <ul class="service-features">
-                        <li>Setup kampanye</li>
-                        <li>Optimasi berkelanjutan</li>
-                        <li>Analisis kompetitor</li>
-                        <li>Laporan performa</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">✏️</div>
-                    <h3>UI/UX Design Website</h3>
-                    <p>Buat dan distribusikan konten berkualitas yang menarik perhatian audiens dan membangun otoritas.</p>
-                    <ul class="service-features">
-                        <li>Strategi konten</li>
-                        <li>Pembuatan konten</li>
-                        <li>Distribusi konten</li>
-                        <li>Analisis engagement</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">📈</div>
-                    <h3>Digital Strategy</h3>
-                    <p>Rencanakan strategi digital yang komprehensif untuk mencapai tujuan bisnis Anda secara efektif.</p>
-                    <ul class="service-features">
-                        <li>Analisis pasar</li>
-                        <li>Perencanaan strategi</li>
-                        <li>Implementasi</li>
-                        <li>Pengukuran hasil</li>
-                    </ul>
-                    <a href="contact.html" class="service-link">Konsultasi Gratis →</a>
+    <main>
+        <!-- Hero Section -->
+        <section class="services-hero">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-subtitle animate__animated animate__fadeIn">Our Services</span>
+                    <h1 class="animate__animated animate__fadeInUp">Layanan Digital Marketing Terlengkap</h1>
+                    <p class="animate__animated animate__fadeInUp animate__delay-1s">Solusi end-to-end untuk semua kebutuhan digital marketing bisnis Anda. Dari strategi hingga eksekusi, kami siap membantu mencapai target Anda.</p>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Process Section -->
-    <section class="process">
-        <div class="container">
-            <div class="section-title">
-                <h2>Proses Kerja Kami</h2>
-                <p>Kami mengikuti proses yang terstruktur untuk memastikan hasil yang optimal untuk bisnis Anda</p>
-            </div>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="step-number">1</div>
-                    <h3>Konsultasi</h3>
-                    <p>Kami mendengarkan kebutuhan dan tujuan bisnis Anda untuk memahami tantangan yang dihadapi.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">2</div>
-                    <h3>Perencanaan</h3>
-                    <p>Kami menyusun strategi dan rencana yang disesuaikan dengan tujuan dan anggaran Anda.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">3</div>
-                    <h3>Implementasi</h3>
-                    <p>Kami menjalankan strategi dengan tools dan teknik terbaru untuk hasil yang maksimal.</p>
-                </div>
-                <div class="process-step">
-                    <div class="step-number">4</div>
-                    <h3>Evaluasi</h3>
-                    <p>Kami memantau, menganalisis, dan mengoptimalkan kampanye secara berkala.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta">
-        <div class="container">
-            <h2>Siap Meningkatkan Bisnis Anda?</h2>
-            <p>Hubungi kami sekarang untuk konsultasi gratis dan kembangkan bisnis Anda bersama Tastive</p>
-            <a href="contact.html" class="btn btn-light">Hubungi Kami</a>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>Tastive</h3>
-                    <p>Kami adalah agensi digital marketing yang berdedikasi untuk membantu bisnis tumbuh di era digital.</p>
-                </div>
-                <div class="footer-column">
-                    <h3>Link Cepat</h3>
-                    <ul>
-                        <li><a href="index.html">Beranda</a></li>
-                        <li><a href="about.html">Tentang Kami</a></li>
-                        <li><a href="services.html">Layanan</a></li>
-                        <li><a href="portfolio.html">Portofolio</a></li>
-                        <li><a href="contact.html">Kontak</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Layanan Kami</h3>
-                    <ul>
-                        <li><a href="services.html">Social Media Management</a></li>
-                        <li><a href="services.html">SEO Optimization</a></li>
-                        <li><a href="services.html">Web Development</a></li>
-                        <li><a href="services.html">Content Marketing</a></li>
-                    </ul>
-                </div>
-                <div class="footer-column">
-                    <h3>Kontak Kami</h3>
-                    <p>Email: info@tastive.com</p>
-                    <p>Telepon: (021) 1234-5678</p>
-                    <p>Alamat: Jl. Digital Marketing No. 123, Jakarta</p>
-                    <div class="social-links">
-                        <a href="#">FB</a>
-                        <a href="#">IG</a>
-                        <a href="#">TW</a>
-                        <a href="#">LI</a>
+        <!-- Services Overview -->
+        <section class="services-overview">
+            <div class="container">
+                <div class="overview-grid">
+                    <div class="overview-item animate__animated animate__fadeInLeft">
+                        <div class="overview-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Strategy & Planning</h3>
+                            <p>Analisis mendalam dan perencanaan strategis untuk kesuksesan jangka panjang</p>
+                        </div>
+                    </div>
+                    <div class="overview-item animate__animated animate__fadeInUp">
+                        <div class="overview-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Implementation</h3>
+                            <p>Eksekusi campaign dengan tools dan teknologi terdepan</p>
+                        </div>
+                    </div>
+                    <div class="overview-item animate__animated animate__fadeInRight">
+                        <div class="overview-icon">
+                            <i class="fas fa-analytics"></i>
+                        </div>
+                        <div class="overview-content">
+                            <h3>Analytics & Optimization</h3>
+                            <p>Monitoring real-time dan optimisasi berkelanjutan untuk hasil maksimal</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>&copy; 2023 Tastive Digital Agency. All rights reserved.</p>
+        </section>
+
+        <!-- Main Services -->
+        <section class="main-services">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Core Services</span>
+                    <h2>Layanan Utama Kami</h2>
+                    <p>Pilih layanan yang sesuai dengan kebutuhan bisnis Anda</p>
+                </div>
+                
+                <div class="services-grid">
+                    <!-- SEO Service -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon seo">
+                                <i class="fas fa-search"></i>
+                            </div>
+                            <h3>Search Engine Optimization</h3>
+                            <p class="service-subtitle">Tingkatkan visibility website di mesin pencari</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Keyword Research & Analysis</li>
+                                <li><i class="fas fa-check"></i>On-Page & Technical SEO</li>
+                                <li><i class="fas fa-check"></i>Content Optimization</li>
+                                <li><i class="fas fa-check"></i>Link Building Strategy</li>
+                                <li><i class="fas fa-check"></i>SEO Reporting & Analytics</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 5,000,000</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Social Media Marketing -->
+                    <div class="service-card featured">
+                        <div class="featured-badge">Most Popular</div>
+                        <div class="service-header">
+                            <div class="service-icon social">
+                                <i class="fab fa-instagram"></i>
+                            </div>
+                            <h3>Social Media Marketing</h3>
+                            <p class="service-subtitle">Bangun brand awareness melalui platform sosial</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Social Media Strategy</li>
+                                <li><i class="fas fa-check"></i>Content Creation & Design</li>
+                                <li><i class="fas fa-check"></i>Community Management</li>
+                                <li><i class="fas fa-check"></i>Influencer Collaboration</li>
+                                <li><i class="fas fa-check"></i>Social Media Analytics</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 3,500,000</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Digital Advertising -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon ads">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3>Digital Advertising</h3>
+                            <p class="service-subtitle">Kampanye iklan berbayar untuk hasil instan</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Google Ads Management</li>
+                                <li><i class="fas fa-check"></i>Facebook & Instagram Ads</li>
+                                <li><i class="fas fa-check"></i>YouTube Advertising</li>
+                                <li><i class="fas fa-check"></i>Display & Remarketing</li>
+                                <li><i class="fas fa-check"></i>Campaign Optimization</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 4,000,000</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Content Marketing -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon content">
+                                <i class="fas fa-pen-fancy"></i>
+                            </div>
+                            <h3>Content Marketing</h3>
+                            <p class="service-subtitle">Konten berkualitas yang engage dan convert</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Content Strategy & Planning</li>
+                                <li><i class="fas fa-check"></i>Blog Writing & SEO Articles</li>
+                                <li><i class="fas fa-check"></i>Video Content Production</li>
+                                <li><i class="fas fa-check"></i>Infographic Design</li>
+                                <li><i class="fas fa-check"></i>Content Distribution</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 2,500,000</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Email Marketing -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon email">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h3>Email Marketing</h3>
+                            <p class="service-subtitle">Nurture leads dan tingkatkan customer retention</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Email Campaign Strategy</li>
+                                <li><i class="fas fa-check"></i>Template Design & Coding</li>
+                                <li><i class="fas fa-check"></i>List Segmentation</li>
+                                <li><i class="fas fa-check"></i>Automation Setup</li>
+                                <li><i class="fas fa-check"></i>Performance Tracking</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 2,000,000</span>
+                                <span class="price-period">/month</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon web">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3>Web Development</h3>
+                            <p class="service-subtitle">Website responsif dan optimized untuk conversion</p>
+                        </div>
+                        <div class="service-content">
+                            <ul class="service-features">
+                                <li><i class="fas fa-check"></i>Responsive Web Design</li>
+                                <li><i class="fas fa-check"></i>E-commerce Development</li>
+                                <li><i class="fas fa-check"></i>CMS Integration</li>
+                                <li><i class="fas fa-check"></i>Speed Optimization</li>
+                                <li><i class="fas fa-check"></i>Security & Maintenance</li>
+                            </ul>
+                            <div class="service-price">
+                                <span class="price-from">Starting from</span>
+                                <span class="price">Rp 15,000,000</span>
+                                <span class="price-period">/project</span>
+                            </div>
+                        </div>
+                        <div class="service-cta">
+                            <a href="contact.html" class="btn-service">Get Started</a>
+                            <a href="#" class="btn-learn-more">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Our Process</span>
+                    <h2>Bagaimana Kami Bekerja</h2>
+                    <p>Metodologi yang telah terbukti untuk menghasilkan hasil terbaik</p>
+                </div>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Discovery & Research</h3>
+                            <p>Analisis mendalam terhadap bisnis, target audience, dan kompetitor untuk memahami landscape pasar Anda</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Strategy Development</h3>
+                            <p>Pengembangan strategi digital marketing yang customized sesuai dengan goals dan budget Anda</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Implementation</h3>
+                            <p>Eksekusi strategi dengan menggunakan tools terbaik dan tim expert yang berpengalaman</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">04</div>
+                        <div class="step-content">
+                            <h3>Monitor & Optimize</h3>
+                            <p>Monitoring performance secara real-time dan optimisasi berkelanjutan untuk hasil maksimal</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">FAQ</span>
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Jawaban untuk pertanyaan yang sering ditanyakan tentang layanan kami</p>
+                </div>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Berapa lama waktu yang dibutuhkan untuk melihat hasil?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Hasil dapat bervariasi tergantung layanan yang dipilih. Untuk digital advertising, hasil dapat terlihat dalam 1-2 minggu. Untuk SEO, biasanya membutuhkan 3-6 bulan untuk melihat peningkatan signifikan. Kami akan memberikan timeline yang realistis sesuai dengan goals Anda.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Apakah ada kontrak jangka panjang?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Kami menawarkan fleksibilitas dalam kontrak. Untuk hasil optimal, kami merekomendasikan komitmen minimal 3-6 bulan tergantung layanan. Namun, kami juga menyediakan paket project-based untuk kebutuhan khusus.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Bagaimana cara mengukur ROI dari layanan digital marketing?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Kami menggunakan berbagai metrik KPI yang relevan dengan goals bisnis Anda, seperti website traffic, leads generation, conversion rate, revenue growth, dan customer acquisition cost. Report komprehensif akan diberikan secara regular.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>Apakah cocok untuk bisnis kecil?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Tentu! Kami melayani bisnis dari berbagai skala, mulai dari startup hingga enterprise. Paket layanan kami dapat disesuaikan dengan budget dan kebutuhan spesifik bisnis Anda.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Grow Your Business?</h2>
+                    <p>Konsultasi gratis untuk menentukan strategi digital marketing yang tepat untuk bisnis Anda</p>
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn-primary">Get Free Consultation</a>
+                        <a href="portfolio.html" class="btn-outline-white">View Our Portfolio</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <h3>BlueWave<span>Digital</span></h3>
+                        <p>Partner terpercaya untuk kesuksesan digital marketing bisnis Anda.</p>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Social Media Marketing</a></li>
+                        <li><a href="services.html">Digital Advertising</a></li>
+                        <li><a href="services.html">Content Marketing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-map-marker-alt"></i> Jakarta, Indonesia</p>
+                        <p><i class="fas fa-phone"></i> +62 812-3456-7890</p>
+                        <p><i class="fas fa-envelope"></i> info@bluewavedigital.com</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 BlueWave Digital. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Mobile Navigation Toggle
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-        
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const icon = this.querySelector('i');
+                
+                faqItem.classList.toggle('active');
+                
+                if (faqItem.classList.contains('active')) {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    answer.style.maxHeight = '0';
+                    icon.style.transform = 'rotate(0deg)';
+                }
+                
+                // Close other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.classList.remove('active');
+                        item.querySelector('.faq-answer').style.maxHeight = '0';
+                        item.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+            });
         });
     </script>
 </body>
