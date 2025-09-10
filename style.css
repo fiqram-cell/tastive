@@ -892,3 +892,134 @@ p {
 .advantage-card:nth-child(4) {
     animation-delay: 0.3s;
 }
+/* Tambahkan CSS ini ke file style.css untuk memperbaiki masalah floating cards di mobile */
+
+/* Responsive fixes untuk floating cards */
+@media screen and (max-width: 768px) {
+    .hero-graphic {
+        width: 300px;
+        height: 300px;
+        position: relative;
+    }
+    
+    .floating-card {
+        position: static;
+        display: inline-flex;
+        margin: 0.5rem;
+        font-size: 0.8rem;
+        padding: 0.8rem 1rem;
+        animation: none; /* Disable bounce animation on mobile */
+    }
+    
+    .card-1,
+    .card-2,
+    .card-3 {
+        position: static;
+        margin: 0.5rem;
+    }
+    
+    .hero-visual {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .hero-illustration {
+        width: 150px;
+        height: 150px;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin-bottom: 1rem;
+    }
+    
+    .circle-bg {
+        width: 200px;
+        height: 200px;
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 0 auto;
+    }
+    
+    /* Container untuk floating cards di mobile */
+    .mobile-cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .hero-graphic {
+        width: 250px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-illustration {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-illustration i {
+        font-size: 2.5rem;
+    }
+    
+    .circle-bg {
+        width: 180px;
+        height: 180px;
+    }
+    
+    .floating-card {
+        font-size: 0.75rem;
+        padding: 0.6rem 0.8rem;
+    }
+}
+
+/* Alternative: Sembunyikan floating cards di mobile jika masih bermasalah */
+@media screen and (max-width: 768px) {
+    .floating-card {
+        display: none;
+    }
+}
+
+/* Atau gunakan pendekatan stack untuk mobile */
+@media screen and (max-width: 768px) {
+    .hero-graphic {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+    }
+    
+    .hero-illustration {
+        position: relative;
+        margin: 0;
+        order: 1;
+    }
+    
+    .floating-card {
+        position: relative;
+        order: 2;
+        margin: 0.5rem 0;
+        align-self: center;
+        animation: none;
+    }
+    
+    .circle-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 160px;
+        height: 160px;
+    }
+}
